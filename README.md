@@ -5,7 +5,7 @@
 
 This repository lets you use Anthropic's **Claude Code CLI** with OpenAI models such as **GPT-5-Codex, GPT-5.1, and others** via a local LiteLLM proxy.
 
-> ⚠️ **ATTENTION** ⚠️
+> **⚠️ ATTENTION ⚠️**
 >
 > If you're here to set up `your own LiteLLM Server` with `LibreChat` as the web UI (or any other OpenAI / Anthropic API compatible client, for that matter), head over to the [litellm-server-boilerplate](https://github.com/teremterem/litellm-server-boilerplate) repository. It contains a "boilerplate" version of this repo with Claude Code CLI stuff stripped away, **an optional `LibreChat` set up, and a `README` which specifically explains how to build `your own AI agents and assistants` on top of it.**
 
@@ -25,6 +25,7 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
 ### Setup 🛠️
 
 1. **Clone this repository:**
+
    ```bash
    git clone https://github.com/teremterem/claude-code-gpt-5-codex.git
    cd claude-code-gpt-5-codex
@@ -38,6 +39,7 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
    ```
 
    Edit `.env` and add your OpenAI API key:
+
    ```dotenv
    OPENAI_API_KEY=your-openai-api-key-here
    # Optional: only needed if you plan to use Anthropic models
@@ -61,11 +63,13 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
    1) **EITHER via `uv`** (make sure to install [uv](https://docs.astral.sh/uv/getting-started/installation/) first):
 
       **OPTION 1:** Use a script for `uv`:
+
       ```bash
       ./uv-run.sh
       ```
 
       **OPTION 2:** Run via a direct `uv` command:
+
       ```bash
       uv run litellm --config config.yaml
       ```
@@ -73,16 +77,19 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
    2) **OR via `Docker`** (make sure to install [Docker Desktop](https://docs.docker.com/desktop/) first):
 
       **OPTION 3:** Run `Docker` in the foreground:
+
       ```bash
       ./run-docker.sh
       ```
 
       **OPTION 4:** Run `Docker` in the background:
+
       ```bash
       ./deploy-docker.sh
       ```
 
       **OPTION 5:** Run `Docker` via a direct command:
+
       ```bash
       docker run -d \
          --name claude-code-gpt-5 \
@@ -91,9 +98,11 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
          --restart unless-stopped \
          ghcr.io/teremterem/claude-code-gpt-5:latest
       ```
+
       > **NOTE:** To run with this command in the foreground instead of the background, remove the `-d` flag.
 
       To see the logs, run:
+
       ```bash
       docker logs -f claude-code-gpt-5
       ```
@@ -108,11 +117,13 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
 ### Using with Claude Code 🎮
 
 1. **Install Claude Code** (if you haven't already):
+
    ```bash
    npm install -g @anthropic-ai/claude-code
    ```
 
 2. **Connect it to the proxy:**
+
    ```bash
    ANTHROPIC_BASE_URL=http://localhost:4000 claude
    ```
@@ -123,9 +134,12 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
    ANTHROPIC_BASE_URL=http://localhost:4000 \
    claude
    ```
+
    > **NOTE:** In this case, if you've previously authenticated, run `claude /logout` first.
 
 4. **That's it!** Your Claude Code client will now use the **OpenAI models** that this repo recommends by default (unless you explicitly specified different choices in your `.env` file). 🎯
+
+---
 
 ### Model aliases
 

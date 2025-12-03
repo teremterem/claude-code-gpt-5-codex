@@ -7,7 +7,7 @@
 
 **A lightweight LiteLLM server boilerplate** pre-configured with `uv` and `Docker` for hosting your own **OpenAI- and Anthropic-compatible endpoints.** Perfect with **LibreChat** as the web UI (a quick setup of which is included in this repository) or any other OpenAI / Anthropic API compatible client. Contains an example of a custom provider that stylizes responses (Yoda example) to serve as a starting point for your own custom providers (which you can think of as **your own AI agents and assistants**).
 
-> ⚠️ **ATTENTION** ⚠️ This `README` is intended for the [litellm-server-boilerplate](https://github.com/teremterem/litellm-server-boilerplate) repository.
+> **⚠️ ATTENTION ⚠️** This `README` is intended for the [litellm-server-boilerplate](https://github.com/teremterem/litellm-server-boilerplate) repository.
 
 ## Architecture 📝
 
@@ -34,6 +34,9 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
 ### Setup 🛠️
 
 1. **Clone this repository, but use a special remote name (`boilerplate` instead of `origin`):**
+
+   The reason `git clone` below uses `boilerplate` as the remote name instead of the usual `origin` is because this will enable you to set up `origin` to point to YOUR OWN remote repository in the later steps of this guide.
+
    ```bash
    git clone \
        --origin boilerplate \
@@ -47,23 +50,29 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
 
    > **NOTE:** If you want to, you can replace `my-litellm-server` with a different project name in both commands above.
 
-   The `git clone` command above uses `boilerplate` as the remote name instead of the usual `origin` **because in later steps you will set up `origin` to point to YOUR OWN remote repository.**
-
 2. **Rename `main` branch to `main-boilerplate` in your local repository:**
+
+   This will later allow you to use the local `main-boilerplate` branch to occasionally pull in bugfixes, new features, etc. from the original `litellm-server-boilerplate` repo **(see the `"Staying up to date with the Boilerplate"` section later in this `README`)**, while making room for YOUR OWN `main` branch, which you will modify as you please and push to YOUR OWN remote (see further steps).
 
    ```bash
    git branch --move main main-boilerplate
    ```
 
-   You are renaming it like this locally because this will later allow you to use this branch to occasionally pull in bugfixes, new features etc. from the original "boilerplate" repo, while making room for YOUR OWN `main` branch, which you will modify as you please and push to YOUR OWN remote (see further steps).
-
 3. **Create YOUR OWN `main` branch in your local repository:**
+
+   Double-check that you're on the `main-boilerplate` branch (just in case).
+
+   ```bash
+   git switch main-boilerplate
+   git pull
+   git status
+   ```
+
+   Then create your own `main` branch (which will be based on `main-boilerplate`).
 
    ```bash
    git switch --create main
    ```
-
-   It will be based on `main-boilerplate` (since this was the branch you were on when you ran the command).
 
 4. **(Optional) Set up `origin` remote and push your `main` branch to YOUR OWN remote repository:**
 
@@ -71,7 +80,9 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
    git remote add origin <your-remote-repository-url>
    ```
 
-   > **ATTENTION:** Make sure your remote repo DOES NOT have the `main` branch of its own already. If it does, delete the remote `main` branch manually (OR use `--force` flag with the next command **AS LONG AS YOU KNOW WHAT YOU'RE DOING**).
+   > **ATTENTION:** Make sure your remote repo DOES NOT have the `main` branch of its own already. If it does, **EITHER** delete the remote `main` branch manually via a web interface, an app, etc. **OR** add `--force` flag to the `git push` command to completely overwrite the remote `main` branch with all its history.
+   >
+   > **⚠️ Choose the latter ONLY IF YOU FULLY UNDERSTAND THE RISKS of using the `--force` flag when working with Git CLI AND KNOW EXACTLY WHAT YOU'RE DOING ⚠️**
 
    ```bash
    git push --set-upstream origin main
@@ -82,17 +93,19 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
 5. **Configure Environment Variables for the LiteLLM Server:**
 
    Copy the template file to create your `.env`:
+
    ```bash
    cp .env.template .env
    ```
 
    Edit `.env` and add your OpenAI API key (and/or any other providers' API keys that you're planning to use):
+
    ```dotenv
    OPENAI_API_KEY=your-openai-api-key-here
-   #ANTHROPIC_API_KEY=your-anthropic-api-key-here
-   #GEMINI_API_KEY=your-gemini-api-key-here
+   # ANTHROPIC_API_KEY=your-anthropic-api-key-here
+   # GEMINI_API_KEY=your-gemini-api-key-here
 
-   ... # API key(s) of any other provider(s)
+   ... # API keys (and other env vars) of any other providers
 
    # Optional (see .env.template for explanation):
    # LITELLM_MASTER_KEY=strong-key-that-you-generated
@@ -105,6 +118,7 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
 6. **Configure Environment Variables for LibreChat:**
 
    Copy `librechat/.env.example` to `librechat/.env`:
+
    ```bash
    cp librechat/.env.example librechat/.env
    ```
@@ -129,35 +143,34 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
    docker compose -p litellm-librechat up
    ```
 
-   Which is equivalent to running:
-   ```bash
-   docker compose \
-      -p litellm-librechat \
-      -f docker-compose.yml \
-      -f docker-compose.override.yml \
-      up
-   ```
-   > **NOTE:** The last two variants of the direct `docker compose` command require you to be in the `librechat/` subdirectory, hence the `cd` command.
+   Which, by default, will use both - `librechat/docker-compose.yml` and `librechat/docker-compose.override.yml`
 
-**That's it!** You should be able to access the LibreChat UI at **http://localhost:3080**, and after registering an account in your local LibreChat instance, you should be able to see something similar to what you see on the screenshot at the beginning of this README.
+   > **NOTE:** For consistent behavior it is important to switch to the `librechat/` subdirectory before running the `docker compose` command above, hence the `cd` command right before it.
+
+**That's it!** You should be able to access the LibreChat UI at **http://localhost:3080**, and after registering an account in your local LibreChat instance, you should be able to see something similar to what you see on the screenshot at the beginning of this README. 🎯
+
+---
 
 ### Running your LiteLLM Server WITHOUT LibreChat
 
 If you don't want to use LibreChat, you can run your LiteLLM Server directly.
 
-> **NOTE:** This time you are expected to be in the `root directory` of the repository, **not** in the `librechat/` subdirectory.
+> **NOTE:** This time you are expected to be in the `root directory` of the repository, **NOT** in the `librechat/` subdirectory.
 
 - **OPTION 1:** Use a script for `uv` (make sure to install [uv](https://docs.astral.sh/uv/getting-started/installation/) first):
+
    ```bash
    ./uv-run.sh
    ```
 
 - **OPTION 2:** Run via a direct `uv` command:
+
    ```bash
    uv run litellm --config config.yaml
    ```
 
 - **OPTION 3:** Run via `Docker Compose` (make sure to install [Docker Desktop](https://docs.docker.com/desktop/) first):
+
    ```bash
    docker-compose \
       -f docker-compose.yml \
@@ -214,6 +227,7 @@ echo "${GITHUB_PAT}" | docker login ghcr.io -u <GITHUB_USERNAME> --password-stdi
 The root Dockerfile builds the LiteLLM server (listens on port 4000 by default).
 
 Multi-arch build and push (recommended):
+
 ```bash
 IMAGE="ghcr.io/<OWNER>/<image-name>"
 VERSION="0.1.0"
@@ -226,6 +240,7 @@ docker buildx build \
 ```
 
 Single-arch (dev) alternative:
+
 ```bash
 IMAGE="ghcr.io/<OWNER>/<image-name>"
 VERSION="0.1.0"
@@ -240,6 +255,7 @@ docker push "${IMAGE}:latest"
 The Dockerfile at `librechat/Dockerfile` extends the official LibreChat image and bakes in your own version of `librechat.yaml`, which removes the burden of later supplying your custom `librechat.yaml` file into your deployment container "from the outside".
 
 Choose coordinates and build:
+
 ```bash
 LIBRECHAT_IMAGE="ghcr.io/<OWNER>/librechat-with-config"
 VERSION="0.1.0"
@@ -289,28 +305,35 @@ docker buildx build \
 Once you start customizing your copy, you will occasionally want to bring in the newest boilerplate improvements. The steps below assume you cloned the boilerplate with the `boilerplate` remote (see the setup section above) and that your own repository is attached as `origin`.
 
 1. **Make sure your working tree is clean.**
+
    ```bash
    git status
    ```
+
    Commit or stash anything pending before you proceed.
 
 2. **Fetch the latest boilerplate branch.**
+
    ```bash
    git fetch boilerplate main:main-boilerplate
    ```
 
 3. **Switch to your local `main` branch.**
+
    ```bash
    git switch main
    ```
 
 4. **Merge the upstream updates into your branch.**
+
    ```bash
    git merge boilerplate/main
    ```
+
    If Git reports conflicts, resolve the files Git marks, `git add` them, and run `git commit` to complete the merge before continuing.
 
 5. **Push the refreshed branch to your own repository.**
+
    ```bash
    git push origin main
    ```
