@@ -137,7 +137,7 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
 
    > **NOTE:** In this case, if you've previously authenticated, run `claude /logout` first.
 
-4. **That's it!** Your Claude Code client will now use the **OpenAI models** that this repo recommends by default (unless you explicitly specified different choices in your `.env` file). 🎯
+**That's it!** Your Claude Code client will now use the **OpenAI models** that this repo recommends by default (unless you explicitly specified different choices in your `.env` file). 🎯
 
 ---
 

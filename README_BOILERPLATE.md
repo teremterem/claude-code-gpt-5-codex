@@ -145,7 +145,7 @@ If you are going to use GPT-5 via API for the first time, **OpenAI may require y
 
    Which, by default, will use both - `librechat/docker-compose.yml` and `librechat/docker-compose.override.yml`
 
-   > **NOTE:** For consistent behavior it is important to switch to the `librechat/` subdirectory before running the `docker compose` command above, hence the `cd` command right before it.
+   > **NOTE:** For consistent behavior it is better to switch to the `librechat/` subdirectory before running the `docker compose` command above (even if you specified the aforementioned compose yaml files via the `-f` flags explicitly), hence the `cd` command right before it.
 
 **That's it!** You should be able to access the LibreChat UI at **http://localhost:3080**, and after registering an account in your local LibreChat instance, you should be able to see something similar to what you see on the screenshot at the beginning of this README. 🎯
 
