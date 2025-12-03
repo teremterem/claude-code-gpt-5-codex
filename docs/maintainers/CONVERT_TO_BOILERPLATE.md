@@ -76,7 +76,7 @@ cd <repo-root-dir>
    git push --set-upstream boilerplate boilerplate-merging-branch
    ```
 
-   > ⚠️ **ATTENTION** ⚠️ If `boilerplate-merging-branch` already exists, either locally or on the remote, make sure to delete both - the local branch and the remote branch - and then retry the command(s) above.
+   > **⚠️ ATTENTION ⚠️** If `boilerplate-merging-branch` already exists, either locally or on the remote, make sure to delete both - the local branch and the remote branch - and then retry the command(s) above.
 
 4. Merge `main` into `boilerplate-merging-branch` in the following way:
 
@@ -112,7 +112,7 @@ cd <repo-root-dir>
    git push --set-upstream boilerplate boilerplate-MANUAL-merging-branch
    ```
 
-   > ⚠️ **ATTENTION** ⚠️ If `boilerplate-MANUAL-merging-branch` already exists, either locally or on the remote, make sure to delete both - the local branch and the remote branch - and then retry the command(s) above.
+   > **⚠️ ATTENTION ⚠️** If `boilerplate-MANUAL-merging-branch` already exists, either locally or on the remote, make sure to delete both - the local branch and the remote branch - and then retry the command(s) above.
 
 ### Delete irrelevant files
 
