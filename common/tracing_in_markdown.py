@@ -1,5 +1,5 @@
 import json
-from typing import Optional
+from typing import Collection, Optional
 
 from litellm import ModelResponse, ResponsesAPIResponse
 
@@ -86,14 +86,14 @@ def write_response_trace(
             f.write(f"```json\n{response_complapi.model_dump_json(indent=2)}\n```\n")
 
 
-def write_streaming_chunk_trace(
+def write_streaming_chunks_trace(
     *,
     timestamp: str,
     calling_method: str,
     chunk_idx: int,
     respapi_chunk: Optional[ResponsesAPIResponse] = None,
     complapi_chunk: Optional[ModelResponse] = None,
-    generic_chunk: Optional[dict] = None,
+    generic_chunks: Optional[Collection[dict]] = None,
 ) -> None:
     TRACES_DIR.mkdir(parents=True, exist_ok=True)
     file = TRACES_DIR / f"{timestamp}_RESPONSE_STREAM.md"
@@ -114,11 +114,12 @@ def write_streaming_chunk_trace(
         if complapi_chunk is not None:
             f.write(f"### ChatCompletions API:\n```json\n{complapi_chunk.model_dump_json(indent=2)}\n```\n\n")
 
-        if generic_chunk is not None:
-            # TODO Do `gen_chunk.model_dump_json(indent=2)` once it's not
-            #  just a dict
-            f.write(f"### GenericStreamingChunk:\n```json\n{json.dumps(generic_chunk, indent=2)}\n```\n\n")
+        if generic_chunks:
+            f.write("### GenericStreamingChunk(s):\n")
+            for generic_chunk in generic_chunks:
+                f.write(f"```json\n{json.dumps(generic_chunk, indent=2)}\n```\n\n")
 
-            # Append text only to the text file
-            with text_file.open("a", encoding="utf-8") as text_f:
-                text_f.write(generic_chunk["text"])
+                if generic_chunk["text"]:
+                    # Append the text of the chunk to the text file
+                    with text_file.open("a", encoding="utf-8") as text_f:
+                        text_f.write(generic_chunk["text"])
