@@ -4,6 +4,7 @@ from typing import Any
 from claude_code_proxy.proxy_config import (
     ALWAYS_USE_RESPONSES_API,
     ANTHROPIC,
+    GEMINI,
     OPENAI,
     REMAP_CLAUDE_HAIKU_TO,
     REMAP_CLAUDE_OPUS_TO,
@@ -18,6 +19,7 @@ class ModelRoute:
     target_model: str  # ALWAYS has a provider prefix ("provider/model_name")
     extra_params: dict[str, Any]
     is_target_anthropic: bool
+    is_target_gemini: bool
     use_responses_api: bool
 
     def __init__(self, requested_model: str) -> None:
@@ -84,6 +86,7 @@ class ModelRoute:
             self.target_model = f"{OPENAI}/{model_name_only}"
 
         self.is_target_anthropic = self.target_model.startswith(f"{ANTHROPIC}/")
+        self.is_target_gemini = self.target_model.startswith(f"{GEMINI}/")
 
         if self.is_target_anthropic:
             self.use_responses_api = False
