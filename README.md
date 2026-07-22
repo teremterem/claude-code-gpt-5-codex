@@ -170,11 +170,11 @@ This is planned to be fixed soon.
 ## And if you like the project, please give it a Star 💫
 
 <p align="center">
-<a href="https://www.star-history.com/#teremterem/claude-code-gpt-5-codex&type=date&legend=top-left">
+<a href="https://www.star-history.com/?type=date&legend=top-left&repos=teremterem%2Fclaude-code-gpt-5-codex">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=teremterem/claude-code-gpt-5-codex&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=teremterem/claude-code-gpt-5-codex&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=teremterem/claude-code-gpt-5-codex&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=teremterem/claude-code-gpt-5-codex&type=date&theme=dark&legend=top-left&sealed_token=I8kY1RnnxAiVCGI3c93a4iWzMhI3HEYttIcnQVVADAEftScYA0rDF42SOCKToNWhKNXkvbbeSaBIX_zanNcCg-0UlT8x8n_LqiSImCvBmelNt6V5LJeIy1NHxea9OCscbydvjo3GJQxxKy-BUOgmdqm31vUWF0N_JE2O9qBVAMfXP3av5d4pyYretQE_" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=teremterem/claude-code-gpt-5-codex&type=date&legend=top-left&sealed_token=I8kY1RnnxAiVCGI3c93a4iWzMhI3HEYttIcnQVVADAEftScYA0rDF42SOCKToNWhKNXkvbbeSaBIX_zanNcCg-0UlT8x8n_LqiSImCvBmelNt6V5LJeIy1NHxea9OCscbydvjo3GJQxxKy-BUOgmdqm31vUWF0N_JE2O9qBVAMfXP3av5d4pyYretQE_" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=teremterem/claude-code-gpt-5-codex&type=date&legend=top-left&sealed_token=I8kY1RnnxAiVCGI3c93a4iWzMhI3HEYttIcnQVVADAEftScYA0rDF42SOCKToNWhKNXkvbbeSaBIX_zanNcCg-0UlT8x8n_LqiSImCvBmelNt6V5LJeIy1NHxea9OCscbydvjo3GJQxxKy-BUOgmdqm31vUWF0N_JE2O9qBVAMfXP3av5d4pyYretQE_" />
  </picture>
 </a>
 </p>
