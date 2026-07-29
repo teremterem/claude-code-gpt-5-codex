@@ -2,14 +2,20 @@
 line-length = 119
 
 [project]
-name = "claude-code-gpt-5"
-version = "1.0.0b4"
-description = "Connect Claude Code CLI to GPT-5"
+name = "claude-code-gpt-5-codex"
+version = "1.0.0"
+description = """\
+Run Anthropic's Claude Code CLI with OpenAI models such as GPT-5-Codex, \
+GPT-5.1, and others via a local LiteLLM proxy.\
+"""
 readme = "README.md"
 
-requires-python = ">=3.8.1,<4.0, !=3.9.7"  # Copied from https://github.com/BerriAI/litellm/blob/main/pyproject.toml
+# Python version constraint was copied from
+# https://github.com/BerriAI/litellm/blob/main/pyproject.toml
+requires-python = ">=3.8.1,<4.0, !=3.9.7"
 dependencies = [
-    "litellm[proxy] !=1.77.3,!=1.77.4",  # https://github.com/BerriAI/litellm/issues/14762
+    # https://github.com/BerriAI/litellm/issues/14762
+    "litellm[proxy] !=1.77.3,!=1.77.4",
 ]
 
 [project.optional-dependencies]
@@ -20,5 +26,5 @@ dev = [
     "black",
     "ipython",
     "pre-commit",
-    "pylint<4.0.0",  # TODO Adapt to pylint 4.x.x
+    "pylint<4.0.0",  # TODO Adapt the project to work with pylint 4.x.x
 ]
