@@ -63,6 +63,13 @@ class RoutedRequest:
             #  temperature ?
             self.params_complapi.pop("temperature", None)
 
+        # # TODO TODO TODO Try installing this version of LiteLLM first:
+        # #  https://github.com/BerriAI/litellm/pull/16719
+
+        # if self.model_route.is_target_gemini:
+        #     # TODO Find a way to fix it more properly
+        #     self.params_complapi["cache_prompt"] = False
+
         # For Langfuse
         trace_name = f"{self.timestamp}-OUTBOUND-{self.calling_method}"
         self.params_complapi.setdefault("metadata", {})["trace_name"] = trace_name

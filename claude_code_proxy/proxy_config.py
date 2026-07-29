@@ -32,4 +32,5 @@ RESPAPI_ONLY_MODELS = (
 )
 
 ANTHROPIC = "anthropic"
+GEMINI = "gemini"
 OPENAI = "openai"
